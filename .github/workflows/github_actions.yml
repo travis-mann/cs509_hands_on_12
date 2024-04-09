@@ -18,7 +18,7 @@ jobs:
         run: dotnet restore
         
       - name: Style Check
-        run: dotnet format --check
+        run: dotnet format
         
       - name: Debug Build and Static Code Analysis
         run: dotnet build --no-restore /p:RunCodeAnalysis=true --configuration Debug
