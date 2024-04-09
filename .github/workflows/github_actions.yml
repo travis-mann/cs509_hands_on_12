@@ -28,6 +28,9 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build
+
+      - name: Create Documentation Folder
+        run: mkdir "./docs"
         
       - name: Build Documentation
         uses: mattnotmitt/doxygen-action@v1.9.5
