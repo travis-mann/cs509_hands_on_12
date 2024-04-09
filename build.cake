@@ -1,11 +1,8 @@
-#addin nuget:?package=Cake.DocFx&version=1.0.0
-
 var defaultName = "Default";
 var restoreName = "Restore";
 var styleAnalyzerName = "StyleAnalyzer";
 var buildName = "Build";
 var staticAnalyzerName = "StaticAnalyzer";
-var documentationName = "Documentation";
 var testName = "Test";
 var cleanName = "Clean";
 
@@ -36,13 +33,7 @@ Task(staticAnalyzerName).IsDependentOn(buildName)
 	DotNetFormatAnalyzers(solutionPath);
 });
 
-Task(documentationName).IsDependentOn(staticAnalyzerName)
-.Does(() =>
-{
-	DocFxBuild("./docfx.json");
-});
-
-Task(testName).IsDependentOn(documentationName).Does(() =>
+Task(testName).IsDependentOn(staticAnalyzerName).Does(() =>
 {
 	DotNetTest(testProjectPath);
 });
