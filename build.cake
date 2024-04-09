@@ -1,4 +1,4 @@
-#tool nuget:?package=Cake.StyleCop&version=1.1.3
+#addin nuget:?package=Cake.DocFx&version=1.0.0
 
 var defaultName = "Default";
 var restoreName = "Restore";
@@ -19,15 +19,7 @@ var testProjectPath = "./CS509HandsOn12.Test/CS509HandsOn12.Test.csproj";
 
 Task(restoreName).Does(() => { DotNetRestore(solutionPath); });
 
-Task(styleAnalyzerName).IsDependentOn(restoreName)
-.Does(() =>
-{
-	StyleCopAnalyse(settings => settings
-		.WithSolution(solutionFile)
-	);
-});
-
-Task(buildName).IsDependAdentOn(styleAnalyzerName).Does(() =>
+Task(buildName).Does(() =>
 {
 	DotNetBuild(solutionPath, new DotNetBuildSettings
 	{
@@ -47,6 +39,7 @@ Task(staticAnalyzerName).IsDependentOn(buildName)
 Task(documentationName).IsDependentOn(staticAnalyzerName)
 .Does(() =>
 {
+	DocFxBuild("./docfx.json");
 });
 
 Task(testName).IsDependentOn(documentationName).Does(() =>
