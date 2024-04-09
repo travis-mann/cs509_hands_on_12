@@ -34,9 +34,6 @@ jobs:
         
       - name: Build Documentation
         uses: mattnotmitt/doxygen-action@v1.9.5
-        with:
-            working-directory: './docs'
-            doxyfile-path: 'Doxyfile'
 
       # USE BELOW TO PUSH DOCUMENTATION TO GOOGLE DRIVE. REQUIRES A SERVICE ACCOUNT.
       
