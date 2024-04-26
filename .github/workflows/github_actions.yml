@@ -29,24 +29,5 @@ jobs:
       - name: Test
         run: dotnet test --no-build
 
-      - name: Create Documentation Folder
-        run: mkdir "./docs"
-        
-      - name: Build Documentation
-        uses: mattnotmitt/doxygen-action@v1.9.5
-
-      # USE BELOW TO PUSH DOCUMENTATION TO GOOGLE DRIVE. REQUIRES A SERVICE ACCOUNT.
-      
-      # - name: Archive Documentation
-      #   run: sudo apt-get update
-      #        sudo apt-get install zip
-      #        zip -r documentation.zip ./docs
-
-      # - name: Upload Documentation
-      #   uses: adityak74/google-drive-upload-git-action@main
-      #   with: 
-      #     credentials: ${{ secrets.credentials }}
-      #     filename: "archive.zip"
-      #     folderId: ${{ secrets.folderId }}
-      #     name: "documentation.zip"
-      #     overwrite: "true"
+      - name: Update Documentation
+        uses: readthedocs/actions/preview@v1
